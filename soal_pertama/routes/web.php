@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HostingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ HostingController::class, "show" ])->name('hosting.detail');
+Route::get('/add', [ HostingController::class, "index" ])->name('hosting.index');
+Route::post('/submit', [ HostingController::class, "store" ])->name('hosting.store');
+Route::get('/edit/{hostingId}', [ HostingController::class, "edit" ])->name('hosting.edit');
+Route::post('/update/{hostingId}', [ HostingController::class, "update" ])->name('hosting.update');
+Route::get('/delete/{hostingId}', [ HostingController::class, "destroy" ]);
